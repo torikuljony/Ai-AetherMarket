@@ -1,107 +1,68 @@
-export default function Filters({ filters, setFilters }) {
-  const handleDifficulty = (value) => {
-    const exists = filters.difficulty.includes(value);
+"use client";
 
-    let updated;
-    if (exists) {
-      updated = filters.difficulty.filter((d) => d !== value);
-    } else {
-      updated = [...filters.difficulty, value];
-    }
+import { useState } from "react";
+import Filters from "@/components/Marketplace/Filters";
+import { SlidersHorizontal, X } from "lucide-react";
 
-    setFilters({ ...filters, difficulty: updated });
-  };
+export default function MarketplacePage() {
+  const [showFilters, setShowFilters] = useState(false);
 
-  const handlePrice = (value) => {
-    setFilters({ ...filters, price: value });
-  };
+  const [filters, setFilters] = useState({
+    difficulty: [],
+    price: "",
+  });
 
   return (
-    <div className="w-full max-w-full overflow-hidden bg-[#11192d] border border-[#2a2f46] rounded-2xl p-3 sm:p-5 text-white">
-      <h2 className="text-base sm:text-xl font-bold mb-4 sm:mb-6 break-words">
-        Filters
-      </h2>
+    <div className="bg-[#050816] min-h-screen text-white">
+      
+      {/* Mobile Filter Button */}
+      <div className="lg:hidden px-4 py-4">
+        <button
+          onClick={() => setShowFilters(true)}
+          className="flex items-center gap-2 bg-[#11192d] border border-[#2a2f46] px-4 py-3 rounded-xl w-full justify-center"
+        >
+          <SlidersHorizontal size={18} />
+          Filters
+        </button>
+      </div>
 
-      {/* DIFFICULTY */}
-      <div className="mb-5 sm:mb-8">
-        <h3 className="text-[11px] sm:text-sm text-gray-400 mb-3 sm:mb-4">
-          DIFFICULTY
-        </h3>
+      <div className="flex gap-6 px-4 lg:px-8">
+        
+        {/* Desktop Filters */}
+        <div className="hidden lg:block w-[280px]">
+          <Filters filters={filters} setFilters={setFilters} />
+        </div>
 
-        <div className="space-y-3 text-xs sm:text-base text-gray-300">
-          <label className="flex items-start gap-2 min-w-0 break-words">
-            <input
-              className="mt-1 shrink-0"
-              type="checkbox"
-              checked={filters.difficulty.includes("Beginner")}
-              onChange={() => handleDifficulty("Beginner")}
-            />
-            <span className="break-words">Beginner</span>
-          </label>
-
-          <label className="flex items-start gap-2 min-w-0 break-words">
-            <input
-              className="mt-1 shrink-0"
-              type="checkbox"
-              checked={filters.difficulty.includes("Intermediate")}
-              onChange={() => handleDifficulty("Intermediate")}
-            />
-            <span className="break-words">Intermediate</span>
-          </label>
-
-          <label className="flex items-start gap-2 min-w-0 break-words">
-            <input
-              className="mt-1 shrink-0"
-              type="checkbox"
-              checked={filters.difficulty.includes("Advanced")}
-              onChange={() => handleDifficulty("Advanced")}
-            />
-            <span className="break-words">Advanced</span>
-          </label>
+        {/* Main Content */}
+        <div className="flex-1">
+          {/* AssetsGrid / Marketplace content */}
         </div>
       </div>
 
-      {/* PRICE */}
-      <div>
-        <h3 className="text-[11px] sm:text-sm text-gray-400 mb-3 sm:mb-4">
-          PRICE RANGE
-        </h3>
+      {/* Mobile Drawer */}
+      {showFilters && (
+        <>
+          {/* Background Overlay */}
+          <div
+            onClick={() => setShowFilters(false)}
+            className="fixed inset-0 bg-black/50 z-40"
+          />
 
-        <div className="space-y-3 text-xs sm:text-base text-gray-300">
-          <label className="flex items-start gap-2 min-w-0 break-words">
-            <input
-              className="mt-1 shrink-0"
-              type="radio"
-              name="price"
-              checked={filters.price === "free"}
-              onChange={() => handlePrice("free")}
-            />
-            <span className="break-words">Free</span>
-          </label>
+          {/* Drawer */}
+          <div className="fixed top-0 left-0 h-full w-[85%] max-w-[320px] bg-[#050816] z-50 p-4 overflow-y-auto transition-all">
+            
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-xl font-bold">Filters</h2>
 
-          <label className="flex items-start gap-2 min-w-0 break-words">
-            <input
-              className="mt-1 shrink-0"
-              type="radio"
-              name="price"
-              checked={filters.price === "under5"}
-              onChange={() => handlePrice("under5")}
-            />
-            <span className="break-words">Under $5</span>
-          </label>
+              <button onClick={() => setShowFilters(false)}>
+                <X size={24} />
+              </button>
+            </div>
 
-          <label className="flex items-start gap-2 min-w-0 break-words">
-            <input
-              className="mt-1 shrink-0"
-              type="radio"
-              name="price"
-              checked={filters.price === "5-15"}
-              onChange={() => handlePrice("5-15")}
-            />
-            <span className="break-words">$5 - $15</span>
-          </label>
-        </div>
-      </div>
+            <Filters filters={filters} setFilters={setFilters} />
+          </div>
+        </>
+      )}
     </div>
   );
 }
