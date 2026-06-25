@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { LayoutDashboard, ShoppingBag } from "lucide-react";
+import { ShoppingBag } from "lucide-react";
 
 export default function UserSidebar() {
   return (
@@ -11,24 +11,12 @@ export default function UserSidebar() {
       </h1>
 
       <div className="space-y-3">
-
-        
-
-        
-        <Link
-          href="/dashboard/user"
-          className="flex items-center gap-3 px-4 py-3 rounded-xl bg-[#171d32]"
-        >
-          <LayoutDashboard size={18} />
-          Dashboard
-        </Link>
-
         <Link
           href="/dashboard/user/orders"
-          className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-[#171d32]"
+          className="flex items-center gap-3 px-4 py-3 rounded-xl bg-[#171d32] hover:bg-[#232b47]"
         >
           <ShoppingBag size={18} />
-          Purchase History
+          Orders
         </Link>
       </div>
     </div>

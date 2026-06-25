@@ -1,96 +1,48 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import DashboardLayout from "@/components/Dashboard/DashboardLayout";
+import Sidebar from "@/components/dashboard/AdminSidebar";
 
 export default function AdminDashboard() {
-  const [users, setUsers] = useState([]);
-
-  const fetchUsers = async () => {
-    const res = await fetch("/api/all-users");
-    const data = await res.json();
-    setUsers(data);
-  };
+  const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    fetchUsers();
+    fetch("/api/orders")
+      .then((res) => res.json())
+      .then((data) => setOrders(data));
   }, []);
 
-  const updateRole = async (email, role) => {
-    await fetch("/api/users/update-role", {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, role }),
-    });
-
-    fetchUsers();
-  };
-
-  const deleteUser = async (email) => {
-    await fetch("/api/users/delete", {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email }),
-    });
-
-    fetchUsers();
-  };
+  const totalSales = orders.reduce(
+    (sum, item) => sum + Number(item.price || 0),
+    0
+  );
 
   return (
-    <DashboardLayout>
-      <h1 className="text-3xl font-bold mb-8">
-        Admin Dashboard
-      </h1>
+    <div className="flex bg-[#050816] text-white min-h-screen">
+      <Sidebar />
 
-      <div className="overflow-x-auto">
-        <table className="w-full border border-[#2a2f46]">
-          <thead className="bg-[#14192d]">
-            <tr>
-              <th className="p-3">Name</th>
-              <th className="p-3">Email</th>
-              <th className="p-3">Role</th>
-              <th className="p-3">Actions</th>
-            </tr>
-          </thead>
+      <div className="flex-1 p-10">
+        <h1 className="text-3xl font-bold mb-8">Admin Dashboard</h1>
 
-          <tbody>
-            {users.map((user) => (
-              <tr key={user._id} className="border-t border-[#2a2f46]">
-                <td className="p-3">{user.name}</td>
-                <td className="p-3">{user.email}</td>
-                <td className="p-3">{user.role}</td>
+        <div className="grid md:grid-cols-3 gap-6">
+          <div className="bg-[#11192d] p-6 rounded-2xl">
+            <h2 className="text-gray-400">Total Orders</h2>
+            <p className="text-3xl font-bold mt-2">{orders.length}</p>
+          </div>
 
-                <td className="p-3 flex gap-2">
-                  <button
-                    onClick={() => updateRole(user.email, "admin")}
-                    className="px-3 py-1 bg-blue-500 rounded"
-                  >
-                    Admin
-                  </button>
+          <div className="bg-[#11192d] p-6 rounded-2xl">
+            <h2 className="text-gray-400">Total Revenue</h2>
+            <p className="text-3xl font-bold mt-2">${totalSales}</p>
+          </div>
 
-                  <button
-                    onClick={() => updateRole(user.email, "creator")}
-                    className="px-3 py-1 bg-green-500 rounded"
-                  >
-                    Creator
-                  </button>
-
-                  <button
-                    onClick={() => deleteUser(user.email)}
-                    className="px-3 py-1 bg-red-500 rounded"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+          <div className="bg-[#11192d] p-6 rounded-2xl">
+            <h2 className="text-gray-400">Completed Orders</h2>
+            <p className="text-3xl font-bold mt-2">
+              {orders.filter((o) => o.status === "completed").length}
+            </p>
+          </div>
+        </div>
       </div>
-    </DashboardLayout>
+    </div>
   );
 }

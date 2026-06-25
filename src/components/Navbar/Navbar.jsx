@@ -25,7 +25,7 @@ export default function Navbar() {
   const getDashboardRoute = () => {
     if (role === "admin") return "/dashboard/admin";
     if (role === "creator") return "/dashboard/creator";
-    return "/dashboard/user";
+    return "/dashboard/user/orders";
   };
 
   const handleLogout = async () => {
@@ -87,12 +87,7 @@ export default function Navbar() {
               </li>
             </ul>
 
-            {/* ✅ Added PRO Button Here */}
-            {/* <Link href="/pro">
-              <button className="hidden md:flex h-10 px-4 rounded-full bg-cyan-400 text-black font-bold">
-                PRO
-              </button>
-            </Link> */}
+          
 
             {!user ? (
               <button
