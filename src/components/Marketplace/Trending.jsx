@@ -1,6 +1,6 @@
 export default function Trending() {
   return (
-    <div className="w-full max-w-full overflow-hidden bg-[#11192d] border border-[#2a2f46] rounded-2xl p-3 sm:p-5 text-white">
+    <div className="hidden sm:block w-full max-w-full overflow-hidden bg-[#11192d] border border-[#2a2f46] rounded-2xl p-3 sm:p-5 text-white">
       <h2 className="text-base sm:text-xl font-bold mb-4 sm:mb-6">
         Trending
       </h2>
