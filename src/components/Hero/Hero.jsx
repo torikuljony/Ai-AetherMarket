@@ -12,14 +12,13 @@ export default function Hero({ onSearch }) {
   };
 
   return (
-    <section className="min-h-[calc(100vh-72px)] bg-[#050816] flex flex-col items-center justify-center px-6 relative overflow-hidden">
+    <section className="min-h-[calc(100vh-72px)] bg-[#050816] flex flex-col items-center justify-center px-4 sm:px-6 relative overflow-hidden">
       
-      {/* Subtle Background Glow */}
       <div className="absolute inset-0 bg-gradient-to-b from-violet-500/5 via-transparent to-transparent pointer-events-none"></div>
 
-      {/* TITLE WITH ANIMATION */}
+      {/* TITLE */}
       <div className="text-center max-w-5xl">
-        <h1 className="font-bold leading-tight text-5xl md:text-7xl tracking-tighter">
+        <h1 className="font-bold leading-tight text-3xl sm:text-5xl md:text-7xl tracking-tighter">
           <span className="inline-block animate-fade-in-up">
             The Intelligence Layer for
           </span>
@@ -31,31 +30,33 @@ export default function Hero({ onSearch }) {
       </div>
 
       {/* DESCRIPTION */}
-      <p className="mt-8 text-center text-[#b8bdd0] text-lg max-w-3xl animate-fade-in-up animation-delay-600">
+      <p className="mt-6 sm:mt-8 text-center text-[#b8bdd0] text-sm sm:text-lg max-w-3xl animate-fade-in-up animation-delay-600 px-2">
         Discover, trade, and deploy high-fidelity prompts optimized
         for leading AI models.
       </p>
 
       {/* SEARCH BAR */}
-      <form onSubmit={handleSubmit} className="mt-10 w-full max-w-3xl relative">
+      <form onSubmit={handleSubmit} className="mt-8 sm:mt-10 w-full max-w-3xl relative">
         <div className="group relative">
-          <div className="flex items-center w-full h-14 md:h-16 rounded-3xl border border-[#2d3148] bg-[#0c1020]/90 backdrop-blur-2xl px-6 shadow-2xl shadow-black/50 transition-all duration-300 focus-within:border-[#7b61ff] focus-within:ring-2 focus-within:ring-[#7b61ff]/30 hover:border-[#7b61ff]/70">
-            
-            <Search className="w-6 h-6 text-[#8d92a7] group-focus-within:text-[#d8c3ff] transition-colors" />
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center w-full rounded-3xl border border-[#2d3148] bg-[#0c1020]/90 backdrop-blur-2xl px-4 sm:px-6 py-4 sm:py-0 shadow-2xl shadow-black/50 transition-all duration-300 focus-within:border-[#7b61ff] focus-within:ring-2 focus-within:ring-[#7b61ff]/30 hover:border-[#7b61ff]/70 sm:h-16">
 
-            <input
-              type="text"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder="Search prompts, models, creators..."
-              className="flex-1 ml-4 bg-transparent outline-none text-white placeholder:text-[#777c91] text-base md:text-lg"
-            />
+            <div className="flex items-center w-full">
+              <Search className="w-5 h-5 sm:w-6 sm:h-6 text-[#8d92a7]" />
 
-            <Sparkles className="w-5 h-5 text-violet-400 mr-3 hidden sm:block" />
+              <input
+                type="text"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                placeholder="Search prompts, models, creators..."
+                className="flex-1 ml-3 sm:ml-4 bg-transparent outline-none text-white placeholder:text-[#777c91] text-sm sm:text-lg"
+              />
 
-            <button 
+              <Sparkles className="w-5 h-5 text-violet-400 ml-2 hidden sm:block" />
+            </div>
+
+            <button
               type="submit"
-              className="ml-3 px-8 py-2.5 rounded-2xl bg-gradient-to-r from-[#7b61ff] to-[#a78bff] text-white font-semibold hover:scale-105 active:scale-95 transition-all duration-200 shadow-lg shadow-violet-500/30 flex items-center gap-2"
+              className="mt-4 sm:mt-0 sm:ml-3 w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-2.5 rounded-2xl bg-gradient-to-r from-[#7b61ff] to-[#a78bff] text-white font-semibold hover:scale-105 active:scale-95 transition-all duration-200 shadow-lg shadow-violet-500/30 flex items-center justify-center gap-2"
             >
               Search
               <Search className="w-4 h-4" />
@@ -65,22 +66,22 @@ export default function Hero({ onSearch }) {
       </form>
 
       {/* CATEGORY BUTTONS */}
-      <div className="flex flex-wrap justify-center gap-4 mt-10">
-        <button className="px-6 py-3 rounded-full border border-[#31354d] bg-[#14192d] text-white hover:border-[#7b61ff] hover:bg-[#1f2336] transition-all duration-200">
+      <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mt-8 sm:mt-10 px-2">
+        <button className="px-4 sm:px-6 py-2.5 sm:py-3 rounded-full border border-[#31354d] bg-[#14192d] text-sm sm:text-base text-white hover:border-[#7b61ff] hover:bg-[#1f2336] transition-all duration-200">
           Midjourney
         </button>
-        <button className="px-6 py-3 rounded-full border border-[#31354d] bg-[#14192d] text-white hover:border-[#7b61ff] hover:bg-[#1f2336] transition-all duration-200">
+        <button className="px-4 sm:px-6 py-2.5 sm:py-3 rounded-full border border-[#31354d] bg-[#14192d] text-sm sm:text-base text-white hover:border-[#7b61ff] hover:bg-[#1f2336] transition-all duration-200">
           ChatGPT
         </button>
-        <button className="px-6 py-3 rounded-full border border-[#31354d] bg-[#14192d] text-white hover:border-[#7b61ff] hover:bg-[#1f2336] transition-all duration-200">
+        <button className="px-4 sm:px-6 py-2.5 sm:py-3 rounded-full border border-[#31354d] bg-[#14192d] text-sm sm:text-base text-white hover:border-[#7b61ff] hover:bg-[#1f2336] transition-all duration-200">
           Stable Diffusion
         </button>
-        <button className="px-6 py-3 rounded-full border border-[#31354d] bg-[#14192d] text-white hover:border-[#7b61ff] hover:bg-[#1f2336] transition-all duration-200">
+        <button className="px-4 sm:px-6 py-2.5 sm:py-3 rounded-full border border-[#31354d] bg-[#14192d] text-sm sm:text-base text-white hover:border-[#7b61ff] hover:bg-[#1f2336] transition-all duration-200">
           Claude
         </button>
       </div>
 
-      <p className="text-xs text-gray-500 mt-8 animate-fade-in-up animation-delay-900">
+      <p className="text-[10px] sm:text-xs text-gray-500 mt-6 sm:mt-8 text-center px-4 animate-fade-in-up animation-delay-900">
         Popular: Cyberpunk Portrait, SQL Optimizer, Isometric Cityscape...
       </p>
     </section>
