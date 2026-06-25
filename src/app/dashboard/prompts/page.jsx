@@ -1,7 +1,7 @@
 "use client";
 
+import DashboardLayout from "@/components/dashboard/DashboardLayout";
 import { useEffect, useState } from "react";
-import DashboardLayout from "@/components/Dashboard/DashboardLayout";
 
 export default function PromptsPage() {
   const [prompts, setPrompts] = useState([]);

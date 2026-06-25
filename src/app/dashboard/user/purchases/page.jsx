@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import DashboardLayout from "@/components/Dashboard/DashboardLayout";
 import useAuth from "@/hooks/useAuth";
+import DashboardLayout from "@/components/dashboard/DashboardLayout";
 
 export default function PurchasesPage() {
   const { user } = useAuth();
