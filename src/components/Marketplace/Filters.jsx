@@ -1,5 +1,4 @@
 export default function Filters({ filters, setFilters }) {
-
   const handleDifficulty = (value) => {
     const exists = filters.difficulty.includes(value);
 
@@ -18,15 +17,17 @@ export default function Filters({ filters, setFilters }) {
   };
 
   return (
-    <div className="bg-[#11192d] border border-[#2a2f46] rounded-2xl p-5 text-white">
-      <h2 className="text-xl font-bold mb-6">Filters</h2>
+    <div className="bg-[#11192d] border border-[#2a2f46] rounded-2xl p-4 sm:p-5 text-white w-full">
+      <h2 className="text-lg sm:text-xl font-bold mb-5 sm:mb-6">Filters</h2>
 
       {/* DIFFICULTY */}
-      <div className="mb-8">
-        <h3 className="text-sm text-gray-400 mb-4">DIFFICULTY</h3>
+      <div className="mb-6 sm:mb-8">
+        <h3 className="text-xs sm:text-sm text-gray-400 mb-3 sm:mb-4">
+          DIFFICULTY
+        </h3>
 
-        <div className="space-y-3 text-gray-300">
-          <label className="flex gap-2">
+        <div className="space-y-3 text-sm sm:text-base text-gray-300">
+          <label className="flex items-center gap-2">
             <input
               type="checkbox"
               checked={filters.difficulty.includes("Beginner")}
@@ -35,7 +36,7 @@ export default function Filters({ filters, setFilters }) {
             Beginner
           </label>
 
-          <label className="flex gap-2">
+          <label className="flex items-center gap-2">
             <input
               type="checkbox"
               checked={filters.difficulty.includes("Intermediate")}
@@ -44,7 +45,7 @@ export default function Filters({ filters, setFilters }) {
             Intermediate
           </label>
 
-          <label className="flex gap-2">
+          <label className="flex items-center gap-2">
             <input
               type="checkbox"
               checked={filters.difficulty.includes("Advanced")}
@@ -57,10 +58,12 @@ export default function Filters({ filters, setFilters }) {
 
       {/* PRICE */}
       <div>
-        <h3 className="text-sm text-gray-400 mb-4">PRICE RANGE</h3>
+        <h3 className="text-xs sm:text-sm text-gray-400 mb-3 sm:mb-4">
+          PRICE RANGE
+        </h3>
 
-        <div className="space-y-3 text-gray-300">
-          <label className="flex gap-2">
+        <div className="space-y-3 text-sm sm:text-base text-gray-300">
+          <label className="flex items-center gap-2">
             <input
               type="radio"
               name="price"
@@ -70,7 +73,7 @@ export default function Filters({ filters, setFilters }) {
             Free
           </label>
 
-          <label className="flex gap-2">
+          <label className="flex items-center gap-2">
             <input
               type="radio"
               name="price"
@@ -80,7 +83,7 @@ export default function Filters({ filters, setFilters }) {
             Under $5
           </label>
 
-          <label className="flex gap-2">
+          <label className="flex items-center gap-2">
             <input
               type="radio"
               name="price"
